@@ -1,5 +1,6 @@
 {
-    "presets": ["env"],
-    "sourceMaps": "inline",
-    "retainLines": true
+  "presets": ["env", "stage-2", "flow"],
+  "sourceMaps": "inline",
+  "retainLines": true,
+  "plugins": [["flow-runtime"]]
 }

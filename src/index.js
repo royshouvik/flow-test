@@ -1,4 +1,5 @@
+// @flow
 
-let sum= (a,b) => a + b;
+let sum = (a: number, b: number): number => a + b;
 
-console.log(sum(1,2)); 
+console.log(sum(1, 2));
