@@ -5,10 +5,11 @@
   "main": "webpack.config.js",
   "scripts": {
     "build": "webpack",
-    "start": "npm-run-all --parallel watch:server watch:build",
+    "start": "npm-run-all --parallel watch:server watch:build start-api",
     "watch:build": "webpack --watch",
     "watch:server": "nodemon --inspect=\"5858\" \"./build/bundle.js\" --watch \"./build\" ",
-    "flow": "flow"
+    "flow": "flow",
+    "start-api": "json-server --watch api/db.json"
   },
   "author": "karim",
   "license": "MIT",
@@ -21,11 +22,13 @@
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
     "flow-bin": "^0.74.0",
+    "json-server": "^0.14.0",
     "nodemon": "^1.12.1",
     "npm-run-all": "^4.1.1",
     "webpack": "^3.8.1"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "flow-runtime": "^0.17.0"
   }
 }
