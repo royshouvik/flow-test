@@ -5,11 +5,12 @@
 // It is meant to be easy to mock.
 
 import axios from "axios";
+import btoa from "btoa";
 
 const logRequests = typeof DEV !== "undefined" && DEV;
 const requestColor = "CornflowerBlue";
 const responseColor = "Crimson";
-const API_URL = "http://localhost:3000";
+const API_URL = "https://dev.hihenry.com/api";
 
 export default class ApiClient {
   static createToken(username, password) {
@@ -67,17 +68,14 @@ export default class ApiClient {
         if (response.status === 401) {
           reject(new Error("Invalid email or password"));
         }
-        response
-          .text()
-          .then(token => {
-            if (token) {
-              this.authToken = "Bearer " + token;
-              resolve(this.authToken);
-            } else {
-              reject(new Error("The server did not send a"));
-            }
-          })
-          .catch(reject);
+        const token = response.data;
+
+        if (token) {
+          this.authToken = "Bearer " + token;
+          resolve(this.authToken);
+        } else {
+          reject(new Error("The server did not send a"));
+        }
       })
     );
   }
@@ -105,7 +103,6 @@ export default class ApiClient {
       axios(API_URL + path, {
         method,
         headers,
-        // mode: "cors",
         data: body
       })
         .then(response => {
@@ -143,22 +140,10 @@ export default class ApiClient {
               code: response.status
             });
           } else {
-            // response
-            //   .json()
-            //   .then(json => {
             resolve({
               status: "ok",
               data: response.data
             });
-
-            //   .catch(() => {
-            //     // Server sent no response, which is ok in most cases. Not all
-            //     // requests will get a response (DELETE for example).
-            //     resolve({
-            //       status: "ok",
-            //       data: null
-            //     });
-            //   });
           }
         })
         .catch(error => {

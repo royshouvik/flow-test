@@ -1,18 +1,12 @@
 {
-  "name": "node-babel-webpack-starter",
+  "name": "flow-test",
   "version": "1.0.0",
-  "description": "skeleton nodejs project with webpack for bundling and babel for transpiling",
-  "main": "webpack.config.js",
+  "description": "",
+  "main": "src/index.js",
   "scripts": {
-    "build": "webpack",
-    "start": "npm-run-all --parallel watch:server watch:build start-api",
-    "watch:build": "webpack --watch",
-    "watch:server": "nodemon --inspect=\"5858\" \"./build/bundle.js\" --watch \"./build\" ",
-    "flow": "flow",
-    "start-api": "json-server --watch api/db.json"
+    "start": "babel-node src/index.js",
+    "flow": "flow"
   },
-  "author": "karim",
-  "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
@@ -21,14 +15,11 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1",
-    "flow-bin": "^0.74.0",
-    "json-server": "^0.14.0",
-    "nodemon": "^1.12.1",
-    "npm-run-all": "^4.1.1",
-    "webpack": "^3.8.1"
+    "flow-bin": "^0.74.0"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "btoa": "^1.2.1",
     "flow-runtime": "^0.17.0"
   }
 }
